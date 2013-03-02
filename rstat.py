@@ -1,4 +1,4 @@
-#/usr/bin/env python
+#!/usr/bin/env python
 
 import time
 import requests
@@ -33,6 +33,7 @@ def main(options=None):
     m = '\n'
     picnum = 0
     rg = RGraph
+    subreddit = None
 
     if options.subreddit:
         subreddit = raw_input('Which sub-reddit do you want statistics for?: ')
@@ -71,6 +72,8 @@ def main(options=None):
                 m = m + '\n    Upvotes %s' % pst['data']['ups']
             if options.downvotes:
                 m = m + '\n    Downvotes %s' % pst['data']['downs']
+            if options.images:
+                picnum = img_downloader(pst, picnum, subreddit)             
             if options.graph:
                 rg.compute_graph(pst)
             m = m + '\n' + ('-' * 43)
