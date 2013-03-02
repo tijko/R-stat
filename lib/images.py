@@ -1,4 +1,5 @@
 import requests
+from os import environ
 
 def img_downloader(pst, picnum, subreddit=None):
     if ('jpeg' in pst['data']['url'] or 
@@ -7,14 +8,14 @@ def img_downloader(pst, picnum, subreddit=None):
         picnum += 1
         if subreddit:
             try:
-                with open('/home/haumea/Pictures/%s' % picnum + subreddit, 'wb+') as f:
+                with open(environ['HOME'] + '/Pictures/%s' % picnum + subreddit, 'wb+') as f:
                     pic = requests.get(pst['data']['url'], timeout=2.0)
                     f.write(pic.content)
             except requests.exceptions.Timeout:
                 print 'Connection Timed Out!'
         else:
             try:
-                with open('/home/haumea/Pictures/%s' % picnum, 'wb+') as f:
+                with open(environ['HOME'] + '/Pictures/%s' % picnum, 'wb+') as f:
                     pic = requests.get(pst['data']['url'], timeout=2.0)
                     f.write(pic.content)
             except requests.exceptions.Timeout:
