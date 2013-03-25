@@ -24,7 +24,7 @@ You can:
     pip install requests
 
 As for the matplotlib module, there are some issues with pip-install apparently.  If
-you have apt installed, I would go this route.
+you have apt installed, you could go this route.
 
     sudo apt-get install python-matplotlib 
 
