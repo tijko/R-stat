@@ -1,17 +1,15 @@
 import pylab
-import collections
 import time
 
 class RGraph(object):
 
-    data = collections.defaultdict(int)
-    for hour in xrange(24):
-        data[str(hour)]
+    data = dict()
+    [data.setdefault(i, 0) for i in map(str, xrange(24))]
 
     @classmethod
     def compute_graph(cls, page_data):
         out = time.asctime(time.localtime(page_data['data']['created_utc']))
-        out = out.split(' ')
+        out = out.split()
         if len(out) > 5:
             out = out[4][:-6]
         else:
